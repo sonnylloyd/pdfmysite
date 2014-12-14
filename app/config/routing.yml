@@ -1,3 +1,7 @@
+pdf_my_site_front:
+    resource: "@PdfMySiteFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: @AppBundle/Controller/
     type:     annotation

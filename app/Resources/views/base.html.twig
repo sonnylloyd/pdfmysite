@@ -2,12 +2,72 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {# meta title should be up to 70 chars #}
+        <title>Pdf My Site - {% block page_title %}Welcome!{% endblock %}</title>
+        {# meta description 155 char #}
+        <meta name="description" content="{% block meta_description %}{% endblock %}"/>
+        {# tells google what to do with page #}
+        <meta name="robots" content="{% block meta_robots %}index,follow{% endblock %}"/>
+        {# facebook title 95 char #}
+        <meta property="og:title" content="Smsdroid - {% block meta_facebook_title %}Welcome!{% endblock %}"/>
+        {# page type blog,website,article #}
+        <meta property="og:type" content="{% block meta_facebook_type %}website{% endblock %}"/>
+        {# image facebook will use #}
+        <meta property="og:image" content="{% block meta_facebook_image %}{% endblock %}"/>
+        {# url of page to consolidate into one url format#}
+        <meta property="og:url" content="{% block meta_facebook_url %}{% endblock %}"/>
+        {# facebook description 297 char #}
+        <meta property="og:description" content="{% block meta_facebook_description %}{% endblock %}"/>
+        {# facebook admins id #}
+        <meta property="fb:admins" content="{% block meta_facebook_admins %}{% endblock %}"/>
+        {# twitter card default is summary #}
+        <meta name="twitter:card" content="{% block meta_twitter_card %}summary{% endblock %}">
+        {# twitter url #}
+        <meta name="twitter:url" content="{% block meta_twitter_url %}{% endblock %}">
+        {# twitter title 70 chars #}
+        <meta name="twitter:title" content="smsdroid - {% block meta_twitter_title %}Welcome{% endblock %}">
+        {# twitter description 200 chars #}
+        <meta name="twitter:description" content="{% block meta_twitter_description %}{% endblock %}">
+        {# twitter image 60x60 #}
+        <meta name="twitter:image" content="{% block meta_twitter_image %}url{% endblock %}">
+        {# Google+ publisher tag #}
+        <link rel="publisher" href="https://plus.google.com/{% block meta_google_publisher %}pdfmysite{% endblock %}"/>
+        {# mobile specific meta #}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% block stylesheets %}{% endblock %}
+{% block headscript %}{% endblock %}
+{# Fav Icons to support all platforms #}
+{#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> #}
+<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-touch-icon-57x57.png') }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('apple-touch-icon-114x114.png') }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('apple-touch-icon-72x72.png') }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-touch-icon-144x144.png') }}">
+<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('apple-touch-icon-60x60.png') }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-touch-icon-120x120.png') }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-touch-icon-76x76.png') }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-touch-icon-152x152.png') }}">
+<link rel="icon" type="image/png" href="{{ asset('favicon-196x196.png') }}" sizes="196x196">
+<link rel="icon" type="image/png" href="{{ asset('favicon-160x160.png') }}" sizes="160x160">
+<link rel="icon" type="image/png" href="{{ asset('favicon-96x96.png') }}" sizes="96x96">
+<link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}" sizes="32x32">
+<meta name="msapplication-TileColor" content="#603cba">
+<meta name="msapplication-TileImage" content="{{ asset('mstile-144x144.png') }}">
+{#<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-51507554-1', 'smsdroid.co.uk');
+    ga('send', 'pageview');
+</script>#}
+</head>
+<body {% block body_attr %}{% endblock %}>
+{% block navigation %}{% endblock %}
+{% block body %}{% endblock %}	
+{% block footer %}{% endblock %}
+{% block javascript %}{% endblock %}
+</body>
 </html>

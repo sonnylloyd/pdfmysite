@@ -43,6 +43,8 @@ class appDevDebugProjectContainer extends Container
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'AppBundle' => 'AppBundle\\AppBundle',
+                'KnpSnappyBundle' => 'Knp\\Bundle\\SnappyBundle\\KnpSnappyBundle',
+                'PdfMySiteFrontBundle' => 'PdfMySite\\Bundle\\FrontBundle\\PdfMySiteFrontBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
@@ -479,7 +481,7 @@ class appDevDebugProjectContainer extends Container
             ),
             'assetic.cache_dir' => (__DIR__.'/assetic'),
             'assetic.bundles' => array(
-
+                0 => 'PdfMySiteFrontBundle',
             ),
             'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
             'assetic.twig_formula_loader.class' => 'Assetic\\Extension\\Twig\\TwigFormulaLoader',
@@ -499,6 +501,23 @@ class appDevDebugProjectContainer extends Container
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
+            'assetic.filter.yui_css.class' => 'Assetic\\Filter\\Yui\\CssCompressorFilter',
+            'assetic.filter.yui_css.java' => '/usr/bin/java',
+            'assetic.filter.yui_css.jar' => (dirname(dirname(__DIR__)).'/Resources/java/yuicompressor-2.4.7.jar'),
+            'assetic.filter.yui_css.charset' => 'UTF-8',
+            'assetic.filter.yui_css.stacksize' => NULL,
+            'assetic.filter.yui_css.timeout' => NULL,
+            'assetic.filter.yui_css.linebreak' => NULL,
+            'assetic.filter.yui_js.class' => 'Assetic\\Filter\\Yui\\JsCompressorFilter',
+            'assetic.filter.yui_js.java' => '/usr/bin/java',
+            'assetic.filter.yui_js.jar' => (dirname(dirname(__DIR__)).'/Resources/java/yuicompressor-2.4.7.jar'),
+            'assetic.filter.yui_js.charset' => 'UTF-8',
+            'assetic.filter.yui_js.stacksize' => NULL,
+            'assetic.filter.yui_js.timeout' => NULL,
+            'assetic.filter.yui_js.nomunge' => NULL,
+            'assetic.filter.yui_js.preserve_semi' => NULL,
+            'assetic.filter.yui_js.disable_optimizations' => NULL,
+            'assetic.filter.yui_js.linebreak' => NULL,
             'assetic.twig_extension.functions' => array(
 
             ),
@@ -617,6 +636,24 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+            'knp_snappy.pdf.internal_generator.class' => 'Knp\\Snappy\\Pdf',
+            'knp_snappy.pdf.class' => 'Knp\\Bundle\\SnappyBundle\\Snappy\\LoggableGenerator',
+            'knp_snappy.pdf.binary' => '/usr/local/bin/wkhtmltopdf',
+            'knp_snappy.pdf.options' => array(
+
+            ),
+            'knp_snappy.pdf.env' => array(
+
+            ),
+            'knp_snappy.image.internal_generator.class' => 'Knp\\Snappy\\Image',
+            'knp_snappy.image.class' => 'Knp\\Bundle\\SnappyBundle\\Snappy\\LoggableGenerator',
+            'knp_snappy.image.binary' => '/usr/local/bin/wkhtmltoimage',
+            'knp_snappy.image.options' => array(
+
+            ),
+            'knp_snappy.image.env' => array(
+
+            ),
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',
@@ -705,6 +742,8 @@ class appDevDebugProjectContainer extends Container
             'assetic.cache' => 'getAssetic_CacheService',
             'assetic.controller' => 'getAssetic_ControllerService',
             'assetic.filter.cssrewrite' => 'getAssetic_Filter_CssrewriteService',
+            'assetic.filter.yui_css' => 'getAssetic_Filter_YuiCssService',
+            'assetic.filter.yui_js' => 'getAssetic_Filter_YuiJsService',
             'assetic.filter_manager' => 'getAssetic_FilterManagerService',
             'assetic.request_listener' => 'getAssetic_RequestListenerService',
             'cache_clearer' => 'getCacheClearerService',
@@ -786,6 +825,8 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.ssi' => 'getFragment_Renderer_SsiService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
+            'knp_snappy.image' => 'getKnpSnappy_ImageService',
+            'knp_snappy.pdf' => 'getKnpSnappy_PdfService',
             'locale_listener' => 'getLocaleListenerService',
             'logger' => 'getLoggerService',
             'monolog.handler.console' => 'getMonolog_Handler_ConsoleService',
@@ -800,6 +841,7 @@ class appDevDebugProjectContainer extends Container
             'monolog.logger.request' => 'getMonolog_Logger_RequestService',
             'monolog.logger.router' => 'getMonolog_Logger_RouterService',
             'monolog.logger.security' => 'getMonolog_Logger_SecurityService',
+            'monolog.logger.snappy' => 'getMonolog_Logger_SnappyService',
             'monolog.logger.templating' => 'getMonolog_Logger_TemplatingService',
             'monolog.logger.translation' => 'getMonolog_Logger_TranslationService',
             'profiler' => 'getProfilerService',
@@ -989,9 +1031,12 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetManagerService()
     {
+        $a = $this->get('templating.loader');
+
         $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig'), $this->get('monolog.logger.assetic', ContainerInterface::NULL_ON_INVALID_REFERENCE)), new \Assetic\Cache\ConfigCache((__DIR__.'/assetic/config')), true)));
 
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', (dirname(dirname(__DIR__)).'/Resources/views'), '/\\.[^.]+\\.twig$/'), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PdfMySiteFrontBundle', (dirname(dirname(__DIR__)).'/Resources/PdfMySiteFrontBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PdfMySiteFrontBundle', (dirname(dirname(dirname(__DIR__))).'/src/PdfMySite/Bundle/FrontBundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, '', (dirname(dirname(__DIR__)).'/Resources/views'), '/\\.[^.]+\\.twig$/'), 'twig');
 
         return $instance;
     }
@@ -1020,6 +1065,49 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'assetic.filter.yui_css' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Assetic\Filter\Yui\CssCompressorFilter A Assetic\Filter\Yui\CssCompressorFilter instance.
+     */
+    protected function getAssetic_Filter_YuiCssService()
+    {
+        $this->services['assetic.filter.yui_css'] = $instance = new \Assetic\Filter\Yui\CssCompressorFilter((dirname(dirname(__DIR__)).'/Resources/java/yuicompressor-2.4.7.jar'), '/usr/bin/java');
+
+        $instance->setCharset('UTF-8');
+        $instance->setTimeout(NULL);
+        $instance->setStackSize(NULL);
+        $instance->setLineBreak(NULL);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'assetic.filter.yui_js' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Assetic\Filter\Yui\JsCompressorFilter A Assetic\Filter\Yui\JsCompressorFilter instance.
+     */
+    protected function getAssetic_Filter_YuiJsService()
+    {
+        $this->services['assetic.filter.yui_js'] = $instance = new \Assetic\Filter\Yui\JsCompressorFilter((dirname(dirname(__DIR__)).'/Resources/java/yuicompressor-2.4.7.jar'), '/usr/bin/java');
+
+        $instance->setCharset('UTF-8');
+        $instance->setTimeout(NULL);
+        $instance->setStackSize(NULL);
+        $instance->setNomunge(NULL);
+        $instance->setPreserveSemi(NULL);
+        $instance->setDisableOptimizations(NULL);
+        $instance->setLineBreak(NULL);
+
+        return $instance;
+    }
+
+    /**
      * Gets the 'assetic.filter_manager' service.
      *
      * This service is shared.
@@ -1029,7 +1117,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_FilterManagerService()
     {
-        return $this->services['assetic.filter_manager'] = new \Symfony\Bundle\AsseticBundle\FilterManager($this, array('cssrewrite' => 'assetic.filter.cssrewrite'));
+        return $this->services['assetic.filter_manager'] = new \Symfony\Bundle\AsseticBundle\FilterManager($this, array('cssrewrite' => 'assetic.filter.cssrewrite', 'yui_css' => 'assetic.filter.yui_css', 'yui_js' => 'assetic.filter.yui_js'));
     }
 
     /**
@@ -2149,6 +2237,32 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'knp_snappy.image' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator A Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator instance.
+     */
+    protected function getKnpSnappy_ImageService()
+    {
+        return $this->services['knp_snappy.image'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Image('/usr/local/bin/wkhtmltoimage', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**
+     * Gets the 'knp_snappy.pdf' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator A Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator instance.
+     */
+    protected function getKnpSnappy_PdfService()
+    {
+        return $this->services['knp_snappy.pdf'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Pdf('/usr/local/bin/wkhtmltopdf', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**
      * Gets the 'locale_listener' service.
      *
      * This service is shared.
@@ -2376,6 +2490,25 @@ class appDevDebugProjectContainer extends Container
     protected function getMonolog_Logger_SecurityService()
     {
         $this->services['monolog.logger.security'] = $instance = new \Symfony\Bridge\Monolog\Logger('security');
+
+        $instance->pushHandler($this->get('monolog.handler.console'));
+        $instance->pushHandler($this->get('monolog.handler.main'));
+        $instance->pushHandler($this->get('monolog.handler.debug'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'monolog.logger.snappy' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bridge\Monolog\Logger A Symfony\Bridge\Monolog\Logger instance.
+     */
+    protected function getMonolog_Logger_SnappyService()
+    {
+        $this->services['monolog.logger.snappy'] = $instance = new \Symfony\Bridge\Monolog\Logger('snappy');
 
         $instance->pushHandler($this->get('monolog.handler.console'));
         $instance->pushHandler($this->get('monolog.handler.main'));
@@ -3826,7 +3959,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
         $instance->addExtension(new \Twig_Extension_Debug());
-        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
+        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(0 => 'PdfMySiteFrontBundle'), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\DumpExtension($this->get('var_dumper.cloner')));
         $instance->addExtension($this->get('twig.extension.acme.demo'));
@@ -3892,6 +4025,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views'), 'Twig');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/vendor/symfony/swiftmailer-bundle/Resources/views'), 'Swiftmailer');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/vendor/doctrine/doctrine-bundle/Resources/views'), 'Doctrine');
+        $instance->addPath((dirname(dirname(dirname(__DIR__))).'/src/PdfMySite/Bundle/FrontBundle/Resources/views'), 'PdfMySiteFront');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views'), 'Debug');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/src/Acme/DemoBundle/Resources/views'), 'AcmeDemo');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views'), 'WebProfiler');

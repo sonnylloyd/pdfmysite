@@ -1,0 +1,24 @@
+{% extends "PdfMySiteFrontBundle:Default:layout.html.twig" %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="urlinput">Enter the website's Url: </label>
+                    <div class="input-group">
+                        <input id="urlinput" type="text" class="form-control" placeholder="http://www.pdfmysite.com">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Generate!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="starter-template">
+            <h1>Bootstrap starter template</h1>
+            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        </div>
+    </div>
+{% endblock %}

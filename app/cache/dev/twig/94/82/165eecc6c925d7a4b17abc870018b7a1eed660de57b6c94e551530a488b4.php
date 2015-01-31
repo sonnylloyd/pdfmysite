@@ -17,6 +17,7 @@ class __TwigTemplate_9482165eecc6c925d7a4b17abc870018b7a1eed660de57b6c94e551530a
 
     protected function doGetParent(array $context)
     {
+        // line 1
         return $this->env->resolveTemplate((($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "isXmlHttpRequest", array())) ? ("WebProfilerBundle:Profiler:ajax_layout.html.twig") : ("WebProfilerBundle:Profiler:layout.html.twig")));
     }
 
@@ -164,7 +165,10 @@ class __TwigTemplate_9482165eecc6c925d7a4b17abc870018b7a1eed660de57b6c94e551530a
         if (("explain" == (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")))) {
             // line 61
             echo "        ";
-            echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("DoctrineBundle:Profiler:explain", array("token" => (isset($context["token"]) ? $context["token"] : $this->getContext($context, "token")), "panel" => "db", "connectionName" => $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "query", array()), "get", array(0 => "connection"), "method"), "query" => $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "query", array()), "get", array(0 => "query"), "method"))));
+            echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("DoctrineBundle:Profiler:explain", array("token" =>             // line 62
+(isset($context["token"]) ? $context["token"] : $this->getContext($context, "token")), "panel" => "db", "connectionName" => $this->getAttribute($this->getAttribute($this->getAttribute(            // line 64
+(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "query", array()), "get", array(0 => "connection"), "method"), "query" => $this->getAttribute($this->getAttribute($this->getAttribute(            // line 65
+(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "query", array()), "get", array(0 => "query"), "method"))));
             // line 66
             echo "
     ";
@@ -767,6 +771,6 @@ class __TwigTemplate_9482165eecc6c925d7a4b17abc870018b7a1eed660de57b6c94e551530a
 
     public function getDebugInfo()
     {
-        return array (  596 => 225,  590 => 224,  585 => 221,  577 => 218,  573 => 216,  569 => 214,  560 => 212,  556 => 211,  553 => 210,  551 => 209,  546 => 207,  543 => 206,  539 => 205,  529 => 197,  525 => 195,  523 => 194,  518 => 193,  514 => 192,  509 => 189,  503 => 185,  500 => 184,  497 => 183,  495 => 182,  492 => 181,  490 => 180,  487 => 179,  484 => 178,  482 => 177,  479 => 176,  477 => 175,  474 => 174,  471 => 173,  469 => 172,  466 => 171,  464 => 170,  461 => 169,  458 => 168,  456 => 167,  451 => 164,  445 => 160,  442 => 159,  439 => 158,  437 => 157,  432 => 154,  426 => 150,  423 => 149,  420 => 148,  418 => 147,  413 => 144,  399 => 143,  394 => 140,  378 => 137,  370 => 135,  368 => 134,  365 => 133,  361 => 131,  347 => 125,  345 => 124,  333 => 121,  329 => 120,  323 => 117,  317 => 116,  312 => 114,  306 => 113,  300 => 110,  294 => 109,  285 => 105,  280 => 103,  276 => 102,  267 => 101,  250 => 100,  246 => 99,  239 => 95,  235 => 94,  229 => 91,  218 => 82,  212 => 78,  210 => 77,  205 => 76,  188 => 75,  184 => 73,  181 => 72,  173 => 68,  169 => 66,  166 => 61,  163 => 60,  160 => 59,  152 => 54,  148 => 53,  142 => 49,  139 => 48,  134 => 45,  131 => 44,  123 => 41,  114 => 37,  107 => 33,  103 => 31,  101 => 30,  94 => 28,  87 => 24,  80 => 20,  76 => 18,  73 => 17,  70 => 16,  66 => 14,  63 => 13,  57 => 11,  54 => 10,  48 => 8,  46 => 7,  38 => 6,  35 => 5,  32 => 4,  29 => 3,);
+        return array (  600 => 225,  594 => 224,  589 => 221,  581 => 218,  577 => 216,  573 => 214,  564 => 212,  560 => 211,  557 => 210,  555 => 209,  550 => 207,  547 => 206,  543 => 205,  533 => 197,  529 => 195,  527 => 194,  522 => 193,  518 => 192,  513 => 189,  507 => 185,  504 => 184,  501 => 183,  499 => 182,  496 => 181,  494 => 180,  491 => 179,  488 => 178,  486 => 177,  483 => 176,  481 => 175,  478 => 174,  475 => 173,  473 => 172,  470 => 171,  468 => 170,  465 => 169,  462 => 168,  460 => 167,  455 => 164,  449 => 160,  446 => 159,  443 => 158,  441 => 157,  436 => 154,  430 => 150,  427 => 149,  424 => 148,  422 => 147,  417 => 144,  403 => 143,  398 => 140,  382 => 137,  374 => 135,  372 => 134,  369 => 133,  365 => 131,  351 => 125,  349 => 124,  337 => 121,  333 => 120,  327 => 117,  321 => 116,  316 => 114,  310 => 113,  304 => 110,  298 => 109,  289 => 105,  284 => 103,  280 => 102,  271 => 101,  254 => 100,  250 => 99,  243 => 95,  239 => 94,  233 => 91,  222 => 82,  216 => 78,  214 => 77,  209 => 76,  192 => 75,  188 => 73,  185 => 72,  177 => 68,  173 => 66,  171 => 65,  170 => 64,  169 => 62,  167 => 61,  164 => 60,  161 => 59,  153 => 54,  149 => 53,  143 => 49,  140 => 48,  135 => 45,  132 => 44,  124 => 41,  115 => 37,  108 => 33,  104 => 31,  102 => 30,  95 => 28,  88 => 24,  81 => 20,  77 => 18,  74 => 17,  71 => 16,  67 => 14,  64 => 13,  58 => 11,  55 => 10,  49 => 8,  47 => 7,  39 => 6,  36 => 5,  33 => 4,  30 => 3,  21 => 1,);
     }
 }

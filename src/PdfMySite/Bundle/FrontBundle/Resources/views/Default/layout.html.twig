@@ -7,33 +7,32 @@
 		filter='cssrewrite'
                 filter='yui_css'
     %} 
+    <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    <link rel="stylesheet" href="{{ asset('mainfront.css') }}" />
+    {#<link rel="stylesheet" href="{{ asset('mainfront.css') }}" />#}
 {% endblock %}
 {% block navigation %}
     <nav class="navbar navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a href="{{ path('pdf_my_site_front_homepage') }}">
-                <object data="{{ asset('common/img/pdfmysite.svg') }}" type="image/svg+xml">
-                    <img src="{{ asset('common/img/pdfmysite.png') }}" alt="pdfmysite logo" />
-                </object>
-            </a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{ path('pdf_my_site_front_homepage') }}">
+                    <img src="{{ asset('common/img/logo/pdfmysite.png') }}" alt="pdfmysite logo" />
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">Archives</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Archives</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>	
 {% endblock %}
 {% block footer %}
@@ -45,8 +44,9 @@
 		output='mainfront.js'
                 filter='yui_js'
     %}
+    <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script src="{{ asset('mainfront.js') }}"></script>
+    {#<script src="{{ asset('mainfront.js') }}"></script>#}
 {% endblock %}
 {% block headscript %}
     <!--[if lt IE]>

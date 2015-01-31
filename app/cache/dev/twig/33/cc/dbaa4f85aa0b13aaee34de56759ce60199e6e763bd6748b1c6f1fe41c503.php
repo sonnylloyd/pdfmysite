@@ -69,14 +69,25 @@ class __TwigTemplate_33ccdbaa4f85aa0b13aaee34de56759ce60199e6e763bd6748b1c6f1fe4
     cursor: help;
 }
 .sf-toolbarreset span,
-.sf-toolbarreset div {
+.sf-toolbarreset div,
+.sf-toolbarreset td,
+.sf-toolbarreset th {
     font-size: 11px;
 }
 .sf-toolbarreset img {
     width: auto;
     display: inline;
 }
-
+.sf-toolbarreset table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    table-layout: auto;
+}
 .sf-toolbarreset .hide-button {
     display: block;
     position: absolute;
@@ -307,12 +318,11 @@ class __TwigTemplate_33ccdbaa4f85aa0b13aaee34de56759ce60199e6e763bd6748b1c6f1fe4
     overflow-y: auto;
 }
 
-table.sf-toolbar-ajax-requests {
-    border-collapse: collapse;
-}
 .sf-toolbar-ajax-requests th, .sf-toolbar-ajax-requests td {
     border-bottom: 1px solid #ddd;
     padding: 0 4px;
+    color: #2f2f2f;
+    background-color: #fff;
 }
 .sf-toolbar-ajax-requests th {
     background-color: #eee;
@@ -358,9 +368,9 @@ table.sf-toolbar-ajax-requests {
 
 /***** Override the setting when the toolbar is on the top *****/
 ";
-        // line 342
+        // line 352
         if (((isset($context["position"]) ? $context["position"] : $this->getContext($context, "position")) == "top")) {
-            // line 343
+            // line 353
             echo "    .sf-minitoolbar {
         top: 0;
         bottom: auto;
@@ -402,12 +412,12 @@ table.sf-toolbar-ajax-requests {
     }
 ";
         }
-        // line 383
+        // line 393
         echo "
 ";
-        // line 384
-        if ((!(isset($context["floatable"]) ? $context["floatable"] : $this->getContext($context, "floatable")))) {
-            // line 385
+        // line 394
+        if ( !(isset($context["floatable"]) ? $context["floatable"] : $this->getContext($context, "floatable"))) {
+            // line 395
             echo "    .sf-toolbarreset {
         position: static;
         background: #cbcbcb;
@@ -419,7 +429,7 @@ table.sf-toolbar-ajax-requests {
     }
 ";
         }
-        // line 395
+        // line 405
         echo "
 /***** Media query *****/
 @media screen and (max-width: 779px) {
@@ -479,6 +489,6 @@ table.sf-toolbar-ajax-requests {
 
     public function getDebugInfo()
     {
-        return array (  423 => 395,  411 => 385,  409 => 384,  406 => 383,  364 => 343,  362 => 342,  19 => 1,);
+        return array (  433 => 405,  421 => 395,  419 => 394,  416 => 393,  374 => 353,  372 => 352,  19 => 1,);
     }
 }

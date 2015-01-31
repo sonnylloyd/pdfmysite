@@ -335,8 +335,10 @@
       <parameter key="form_themes" type="collection">
         <parameter>form_div_layout.html.twig</parameter>
       </parameter>
-      <parameter key="autoescape_service">null</parameter>
-      <parameter key="autoescape_service_method">null</parameter>
+      <parameter key="autoescape" type="collection">
+        <parameter>Symfony\Bundle\TwigBundle\TwigDefaultEscapingStrategy</parameter>
+        <parameter>guess</parameter>
+      </parameter>
       <parameter key="cache">/var/www/pdfmysite/app/cache/dev/twig</parameter>
       <parameter key="charset">UTF-8</parameter>
       <parameter key="paths" type="collection"/>
@@ -367,17 +369,21 @@
     <parameter key="monolog.handler.raven.class">Monolog\Handler\RavenHandler</parameter>
     <parameter key="monolog.handler.newrelic.class">Monolog\Handler\NewRelicHandler</parameter>
     <parameter key="monolog.handler.hipchat.class">Monolog\Handler\HipChatHandler</parameter>
+    <parameter key="monolog.handler.slack.class">Monolog\Handler\SlackHandler</parameter>
     <parameter key="monolog.handler.cube.class">Monolog\Handler\CubeHandler</parameter>
     <parameter key="monolog.handler.amqp.class">Monolog\Handler\AmqpHandler</parameter>
     <parameter key="monolog.handler.error_log.class">Monolog\Handler\ErrorLogHandler</parameter>
     <parameter key="monolog.handler.loggly.class">Monolog\Handler\LogglyHandler</parameter>
     <parameter key="monolog.handler.logentries.class">Monolog\Handler\LogEntriesHandler</parameter>
+    <parameter key="monolog.handler.whatfailuregroup.class">Monolog\Handler\WhatFailureGroupHandler</parameter>
     <parameter key="monolog.activation_strategy.not_found.class">Symfony\Bundle\MonologBundle\NotFoundActivationStrategy</parameter>
     <parameter key="monolog.handler.fingers_crossed.class">Monolog\Handler\FingersCrossedHandler</parameter>
     <parameter key="monolog.handler.fingers_crossed.error_level_activation_strategy.class">Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy</parameter>
     <parameter key="monolog.handler.filter.class">Monolog\Handler\FilterHandler</parameter>
     <parameter key="monolog.handler.mongo.class">Monolog\Handler\MongoDBHandler</parameter>
     <parameter key="monolog.mongo.client.class">MongoClient</parameter>
+    <parameter key="monolog.handler.elasticsearch.class">Monolog\Handler\ElasticSearchHandler</parameter>
+    <parameter key="monolog.elastica.client.class">Elastica\Client</parameter>
     <parameter key="monolog.swift_mailer.handlers" type="collection"/>
     <parameter key="monolog.handlers_to_channels" type="collection">
       <parameter key="monolog.handler.console_very_verbose" type="collection">
@@ -596,12 +602,12 @@
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="knp_snappy.pdf.internal_generator.class">Knp\Snappy\Pdf</parameter>
     <parameter key="knp_snappy.pdf.class">Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator</parameter>
-    <parameter key="knp_snappy.pdf.binary">/usr/local/bin/wkhtmltopdf</parameter>
+    <parameter key="knp_snappy.pdf.binary">/var/www/pdfmysite/app/Resources/wkhtmltopdf/wkhtmltopdf</parameter>
     <parameter key="knp_snappy.pdf.options" type="collection"/>
     <parameter key="knp_snappy.pdf.env" type="collection"/>
     <parameter key="knp_snappy.image.internal_generator.class">Knp\Snappy\Image</parameter>
     <parameter key="knp_snappy.image.class">Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator</parameter>
-    <parameter key="knp_snappy.image.binary">/usr/local/bin/wkhtmltoimage</parameter>
+    <parameter key="knp_snappy.image.binary">/var/www/pdfmysite/app/Resources/wkhtmltopdf/wkhtmltoimage</parameter>
     <parameter key="knp_snappy.image.options" type="collection"/>
     <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
@@ -1358,8 +1364,10 @@
     <service id="templating.globals" class="Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables">
       <argument type="service" id="service_container"/>
     </service>
-    <service id="validator" class="Symfony\Component\Validator\ValidatorInterface" factory-method="getValidator" factory-service="validator.builder"/>
-    <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilderInterface" factory-method="createValidatorBuilder" factory-class="%validator.builder.factory.class%">
+    <service id="validator" class="Symfony\Component\Validator\ValidatorInterface">
+      <factory service="validator.builder" method="getValidator"/>
+    </service>
+    <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilderInterface">
       <call method="setConstraintValidatorFactory">
         <argument type="service">
           <service class="Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory" public="false">
@@ -1398,6 +1406,7 @@
           <argument type="service" id="doctrine.orm.validator_initializer"/>
         </argument>
       </call>
+      <factory class="%validator.builder.factory.class%" method="createValidatorBuilder"/>
     </service>
     <service id="validator.expression" class="Symfony\Component\Validator\Constraints\ExpressionValidator">
       <tag name="validator.constraint_validator" alias="validator.expression"/>
@@ -1497,7 +1506,7 @@
         <argument type="service">
           <service class="Symfony\Bundle\SecurityBundle\DataCollector\SecurityDataCollector" public="false">
             <tag name="data_collector" template="@Security/Collector/security.html.twig" id="security"/>
-            <argument type="service" id="security.context" on-invalid="ignore"/>
+            <argument type="service" id="security.token_storage" on-invalid="ignore"/>
           </service>
         </argument>
       </call>
@@ -1669,38 +1678,6 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument>monolog.handler.console</argument>
-          <argument>onCommand</argument>
-        </argument>
-        <argument>255</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>console.terminate</argument>
-        <argument type="collection">
-          <argument>monolog.handler.console</argument>
-          <argument>onTerminate</argument>
-        </argument>
-        <argument>-255</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument>monolog.handler.console_very_verbose</argument>
-          <argument>onCommand</argument>
-        </argument>
-        <argument>255</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>console.terminate</argument>
-        <argument type="collection">
-          <argument>monolog.handler.console_very_verbose</argument>
-          <argument>onTerminate</argument>
-        </argument>
-        <argument>-255</argument>
-      </call>
-      <call method="addListenerService">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>assetic.request_listener</argument>
@@ -1771,6 +1748,14 @@
       <call method="addSubscriberService">
         <argument>twig.exception_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ExceptionListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>monolog.handler.console</argument>
+        <argument>Symfony\Bridge\Monolog\Handler\ConsoleHandler</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>monolog.handler.console_very_verbose</argument>
+        <argument>Symfony\Bridge\Monolog\Handler\ConsoleHandler</argument>
       </call>
       <call method="addSubscriberService">
         <argument>swiftmailer.email_sender.listener</argument>
@@ -2163,8 +2148,10 @@
         <argument key="form_themes" type="collection">
           <argument>form_div_layout.html.twig</argument>
         </argument>
-        <argument key="autoescape_service">null</argument>
-        <argument key="autoescape_service_method">null</argument>
+        <argument key="autoescape" type="collection">
+          <argument>Symfony\Bundle\TwigBundle\TwigDefaultEscapingStrategy</argument>
+          <argument>guess</argument>
+        </argument>
         <argument key="cache">/var/www/pdfmysite/app/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
@@ -2357,10 +2344,10 @@
       <argument>/var/www/pdfmysite/app/logs/dev.log</argument>
       <argument>100</argument>
       <argument>true</argument>
+      <argument>null</argument>
     </service>
     <service id="monolog.handler.console" class="Symfony\Bridge\Monolog\Handler\ConsoleHandler">
-      <tag name="kernel.event_listener" event="console.command" method="onCommand" priority="255"/>
-      <tag name="kernel.event_listener" event="console.terminate" method="onTerminate" priority="-255"/>
+      <tag name="kernel.event_subscriber"/>
       <argument>null</argument>
       <argument>false</argument>
       <argument type="collection">
@@ -2371,8 +2358,7 @@
       </argument>
     </service>
     <service id="monolog.handler.console_very_verbose" class="Symfony\Bridge\Monolog\Handler\ConsoleHandler">
-      <tag name="kernel.event_listener" event="console.command" method="onCommand" priority="255"/>
-      <tag name="kernel.event_listener" event="console.terminate" method="onTerminate" priority="-255"/>
+      <tag name="kernel.event_subscriber"/>
       <argument>null</argument>
       <argument>false</argument>
       <argument type="collection">
@@ -2471,7 +2457,9 @@
       <argument type="service" id="kernel"/>
       <argument type="service" id="service_container"/>
       <argument type="service">
-        <service class="Symfony\Component\DependencyInjection\ParameterBag\ParameterBag" factory-method="getParameterBag" factory-service="service_container" public="false"/>
+        <service class="Symfony\Component\DependencyInjection\ParameterBag\ParameterBag" public="false">
+          <factory service="service_container" method="getParameterBag"/>
+        </service>
       </argument>
       <argument>/var/www/pdfmysite/app/../web</argument>
       <argument>true</argument>
@@ -2732,7 +2720,7 @@
       <tag name="monolog.logger" channel="snappy"/>
       <argument type="service">
         <service class="Knp\Snappy\Pdf" public="false">
-          <argument>/usr/local/bin/wkhtmltopdf</argument>
+          <argument>/var/www/pdfmysite/app/Resources/wkhtmltopdf/wkhtmltopdf</argument>
           <argument type="collection"/>
           <argument type="collection"/>
         </service>
@@ -2743,7 +2731,7 @@
       <tag name="monolog.logger" channel="snappy"/>
       <argument type="service">
         <service class="Knp\Snappy\Image" public="false">
-          <argument>/usr/local/bin/wkhtmltoimage</argument>
+          <argument>/var/www/pdfmysite/app/Resources/wkhtmltopdf/wkhtmltoimage</argument>
           <argument type="collection"/>
           <argument type="collection"/>
         </service>
@@ -2762,7 +2750,7 @@
     </service>
     <service id="var_dumper.cloner" class="Symfony\Component\VarDumper\Cloner\VarCloner">
       <call method="setMaxItems">
-        <argument>250</argument>
+        <argument>2500</argument>
       </call>
       <call method="setMaxString">
         <argument>-1</argument>
@@ -3059,12 +3047,6 @@
       <argument type="service" id="templating.name_parser"/>
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="debug.stopwatch"/>
-      <call method="setDefaultEscapingStrategy">
-        <argument type="collection">
-          <argument type="service" id="templating"/>
-          <argument>guessDefaultEscapingStrategy</argument>
-        </argument>
-      </call>
     </service>
     <service id="router" class="Symfony\Bundle\FrameworkBundle\Routing\Router">
       <tag name="monolog.logger" channel="router"/>

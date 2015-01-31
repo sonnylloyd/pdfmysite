@@ -45,9 +45,9 @@ class __TwigTemplate_39b86e120954722bf0da031d6de8265e8d12ffb05bc913c011ce6cb79c6
         <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
         ";
         // line 7
-        echo "        <title>Pdf My Site - ";
+        echo "        <title>";
         $this->displayBlock('page_title', $context, $blocks);
-        echo "</title>
+        echo " | Pdf My Site</title>
         ";
         // line 9
         echo "        <meta name=\"description\" content=\"";
@@ -210,7 +210,7 @@ class __TwigTemplate_39b86e120954722bf0da031d6de8265e8d12ffb05bc913c011ce6cb79c6
     // line 7
     public function block_page_title($context, array $blocks = array())
     {
-        echo "Welcome!";
+        echo "Welcome";
     }
 
     // line 9

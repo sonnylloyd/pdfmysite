@@ -209,6 +209,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'PdfMySite\\Bundle\\FrontBundle\\Controller\\DefaultController::indexAction',  '_route' => 'pdf_my_site_front_homepage',);
         }
 
+        // pdf_my_site_front_generate
+        if ($pathinfo === '/generate') {
+            return array (  '_controller' => 'PdfMySite\\Bundle\\FrontBundle\\Controller\\DefaultController::generateAction',  '_route' => 'pdf_my_site_front_generate',);
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

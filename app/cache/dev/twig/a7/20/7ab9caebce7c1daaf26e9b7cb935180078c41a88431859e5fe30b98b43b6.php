@@ -7,7 +7,15 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("PdfMySiteFrontBundle:Default:layout.html.twig");
+        // line 1
+        try {
+            $this->parent = $this->env->loadTemplate("PdfMySiteFrontBundle:Default:layout.html.twig");
+        } catch (Twig_Error_Loader $e) {
+            $e->setTemplateFile($this->getTemplateName());
+            $e->setTemplateLine(1);
+
+            throw $e;
+        }
 
         $this->blocks = array(
             'body' => array($this, 'block_body'),
@@ -64,6 +72,6 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
 
     public function getDebugInfo()
     {
-        return array (  31 => 3,  28 => 2,);
+        return array (  39 => 3,  36 => 2,  11 => 1,);
     }
 }

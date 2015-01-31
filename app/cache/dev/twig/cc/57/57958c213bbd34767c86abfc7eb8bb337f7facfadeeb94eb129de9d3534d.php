@@ -88,12 +88,12 @@ class __TwigTemplate_cc5757958c213bbd34767c86abfc7eb8bb337f7facfadeeb94eb129de9d
             requestStack = [],
 
             renderAjaxRequests = function() {
-                var requestCounter = document.getElementsByClassName('sf-toolbar-ajax-requests');
+                var requestCounter = document.querySelectorAll('.sf-toolbar-ajax-requests');
                 if (!requestCounter.length) {
                     return;
                 }
 
-                var tbodies = document.getElementsByClassName('sf-toolbar-ajax-request-list');
+                var tbodies = document.querySelectorAll('.sf-toolbar-ajax-request-list');
                 var state = 'ok';
                 if (tbodies.length) {
                     var tbody = tbodies[0];
@@ -154,7 +154,7 @@ class __TwigTemplate_cc5757958c213bbd34767c86abfc7eb8bb337f7facfadeeb94eb129de9d
                             row.className = 'sf-ajax-request sf-ajax-request-' + requestState;
                         }
 
-                        var infoSpan = document.getElementsByClassName(\"sf-toolbar-ajax-info\")[0];
+                        var infoSpan = document.querySelectorAll(\".sf-toolbar-ajax-info\")[0];
                         var children = Array.prototype.slice.call(tbody.children);
                         for (var i = 0; i < children.length; i++) {
                             tbody.removeChild(children[i]);

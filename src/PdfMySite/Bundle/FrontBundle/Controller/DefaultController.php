@@ -15,7 +15,7 @@ class DefaultController extends Controller {
         //$this->get('knp_snappy.image')->generate('http://www.google.fr', '/web/generates/image.jpg');
         //$this->get('knp_snappy.pdf')->generate('http://www.google.fr', '/web/generates/file.pdf');
         
-        $pageUrl = "https://github.com/KnpLabs/KnpSnappyBundle";
+        $pageUrl = "www.google.com";
         return new Response(
                 $this->get('knp_snappy.pdf')->getOutput($pageUrl), 200, array(
             'Content-Type' => 'application/pdf',

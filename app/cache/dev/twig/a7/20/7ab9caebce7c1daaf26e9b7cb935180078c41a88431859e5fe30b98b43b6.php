@@ -53,8 +53,21 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
     </div>
     <div class=\"container\">
         <div class=\"starter-template\">
-            <h1>Bootstrap starter template</h1>
-            <p class=\"lead\">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+            <h1>Currently Under Contruction</h1>
+            <p class=\"lead\">Please be patient.</p>
+        </div>
+    </div>
+    <div class=\"container\">
+        <div class=\"starter-template\">
+            <div class=\"col-md-4\">
+                <h1>ads here</h1>
+            </div>
+            <div class=\"col-md-4\">
+                <h1>ads here</h1>
+            </div>
+            <div class=\"col-md-4\">
+                <h1>ads here</h1>
+            </div>
         </div>
     </div>
 ";

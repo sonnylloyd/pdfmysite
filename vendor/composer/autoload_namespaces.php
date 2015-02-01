@@ -17,6 +17,7 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Knp\\Snappy' => array($vendorDir . '/knplabs/knp-snappy/src'),
     'Knp\\Bundle\\SnappyBundle' => array($vendorDir . '/knplabs/knp-snappy-bundle'),
+    'JsonpCallbackValidator' => array($vendorDir . '/willdurand/jsonp-callback-validator/src'),
     'Incenteev\\ParameterHandler' => array($vendorDir . '/incenteev/composer-parameter-handler'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),

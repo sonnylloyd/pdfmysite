@@ -18,6 +18,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
+      <parameter key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</parameter>
       <parameter key="PdfMySiteFrontBundle">PdfMySite\Bundle\FrontBundle\PdfMySiteFrontBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
@@ -27,12 +28,12 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
-    <parameter key="database_driver">pdo_mysql</parameter>
+    <parameter key="database_driver">pdo_pgsql</parameter>
     <parameter key="database_host">127.0.0.1</parameter>
-    <parameter key="database_port">null</parameter>
+    <parameter key="database_port">5432</parameter>
     <parameter key="database_name">pdfmysite</parameter>
-    <parameter key="database_user">root</parameter>
-    <parameter key="database_password">aIR123</parameter>
+    <parameter key="database_user">postgres</parameter>
+    <parameter key="database_password">aIRLol123</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -610,6 +611,14 @@
     <parameter key="knp_snappy.image.binary">/var/www/pdfmysite/app/Resources/wkhtmltopdf/wkhtmltoimage</parameter>
     <parameter key="knp_snappy.image.options" type="collection"/>
     <parameter key="knp_snappy.image.env" type="collection"/>
+    <parameter key="fos_js_routing.extractor.class">FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor</parameter>
+    <parameter key="fos_js_routing.controller.class">FOS\JsRoutingBundle\Controller\Controller</parameter>
+    <parameter key="fos_js_routing.normalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer</parameter>
+    <parameter key="fos_js_routing.normalizer.routes_response.class">FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer</parameter>
+    <parameter key="fos_js_routing.denormalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer</parameter>
+    <parameter key="fos_js_routing.cache_control" type="collection">
+      <parameter key="enabled">false</parameter>
+    </parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2547,12 +2556,12 @@
     <service id="doctrine.dbal.logger.profiling.default" class="Doctrine\DBAL\Logging\DebugStack" public="false"/>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection" factory-method="createConnection" factory-service="doctrine.dbal.connection_factory">
       <argument type="collection">
-        <argument key="driver">pdo_mysql</argument>
+        <argument key="driver">pdo_pgsql</argument>
         <argument key="host">127.0.0.1</argument>
-        <argument key="port">null</argument>
+        <argument key="port">5432</argument>
         <argument key="dbname">pdfmysite</argument>
-        <argument key="user">root</argument>
-        <argument key="password">aIR123</argument>
+        <argument key="user">postgres</argument>
+        <argument key="password">aIRLol123</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
       </argument>
@@ -2626,7 +2635,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="PdfMySiteFrontBundle">PdfMySite\Bundle\FrontBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2639,7 +2650,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/var/www/pdfmysite/src/PdfMySite/Bundle/FrontBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>PdfMySite\Bundle\FrontBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
@@ -2737,6 +2760,56 @@
         </service>
       </argument>
       <argument type="service" id="monolog.logger.snappy" on-invalid="null"/>
+    </service>
+    <service id="fos_js_routing.extractor" class="FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor">
+      <argument type="service" id="router"/>
+      <argument type="collection"/>
+      <argument>/var/www/pdfmysite/app/cache/dev</argument>
+      <argument type="collection">
+        <argument key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</argument>
+        <argument key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</argument>
+        <argument key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</argument>
+        <argument key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</argument>
+        <argument key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</argument>
+        <argument key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</argument>
+        <argument key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</argument>
+        <argument key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</argument>
+        <argument key="AppBundle">AppBundle\AppBundle</argument>
+        <argument key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</argument>
+        <argument key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</argument>
+        <argument key="PdfMySiteFrontBundle">PdfMySite\Bundle\FrontBundle\PdfMySiteFrontBundle</argument>
+        <argument key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</argument>
+        <argument key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</argument>
+        <argument key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</argument>
+        <argument key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</argument>
+        <argument key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</argument>
+      </argument>
+    </service>
+    <service id="fos_js_routing.controller" class="FOS\JsRoutingBundle\Controller\Controller">
+      <argument type="service" id="fos_js_routing.serializer"/>
+      <argument type="service" id="fos_js_routing.extractor"/>
+      <argument type="collection">
+        <argument key="enabled">false</argument>
+      </argument>
+      <argument>true</argument>
+    </service>
+    <service id="fos_js_routing.serializer" class="Symfony\Component\Serializer\Serializer">
+      <argument type="collection">
+        <argument type="service">
+          <service class="FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer" public="false"/>
+        </argument>
+        <argument type="service">
+          <service class="FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer" public="false"/>
+        </argument>
+        <argument type="service">
+          <service class="FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer" public="false"/>
+        </argument>
+      </argument>
+      <argument type="collection">
+        <argument key="json" type="service">
+          <service class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
+        </argument>
+      </argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>

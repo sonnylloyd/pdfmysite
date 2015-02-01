@@ -1604,61 +1604,6 @@
         "description": "A security checker for your composer.lock"
     },
     {
-        "name": "sensio/distribution-bundle",
-        "version": "v3.0.15",
-        "version_normalized": "3.0.15.0",
-        "target-dir": "Sensio/Bundle/DistributionBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-            "reference": "0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c",
-            "reference": "0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "sensiolabs/security-checker": "~2.0",
-            "symfony/class-loader": "~2.2",
-            "symfony/form": "~2.2",
-            "symfony/framework-bundle": "~2.3",
-            "symfony/process": "~2.2",
-            "symfony/validator": "~2.2",
-            "symfony/yaml": "~2.2"
-        },
-        "time": "2015-01-07 07:13:43",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Sensio\\Bundle\\DistributionBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Base bundle for Symfony Distributions",
-        "keywords": [
-            "configuration",
-            "distribution"
-        ]
-    },
-    {
         "name": "sensio/generator-bundle",
         "version": "v2.5.1",
         "version_normalized": "2.5.1.0",
@@ -1829,6 +1774,227 @@
             "knplabs",
             "pdf",
             "snappy"
+        ]
+    },
+    {
+        "name": "sensio/distribution-bundle",
+        "version": "v3.0.16",
+        "version_normalized": "3.0.16.0",
+        "target-dir": "Sensio/Bundle/DistributionBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
+            "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
+            "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "sensiolabs/security-checker": "~2.0",
+            "symfony/class-loader": "~2.2",
+            "symfony/form": "~2.2",
+            "symfony/framework-bundle": "~2.3",
+            "symfony/process": "~2.2",
+            "symfony/validator": "~2.2",
+            "symfony/yaml": "~2.2"
+        },
+        "time": "2015-02-01 05:42:21",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Sensio\\Bundle\\DistributionBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Base bundle for Symfony Distributions",
+        "keywords": [
+            "configuration",
+            "distribution"
+        ]
+    },
+    {
+        "name": "knplabs/doctrine-behaviors",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/DoctrineBehaviors.git",
+            "reference": "1fd1a930ba83f66b86c013861b6bf1c37bd677d0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/1fd1a930ba83f66b86c013861b6bf1c37bd677d0",
+            "reference": "1fd1a930ba83f66b86c013861b6bf1c37bd677d0",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/common": ">=2.2",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "doctrine/orm": ">=2.2",
+            "ext-pdo_mysql": "*",
+            "ext-pdo_pgsql": "*",
+            "ext-pdo_sqlite": "*",
+            "hexmedia/yaml-linter": "~0.1",
+            "jakub-onderka/php-parallel-lint": "~0.8",
+            "phpunit/phpunit": "~3.7"
+        },
+        "time": "2015-01-26 08:54:52",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Knp\\DoctrineBehaviors\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Knplabs",
+                "homepage": "http://knplabs.com"
+            }
+        ],
+        "description": "Doctrine2 behavior traits",
+        "homepage": "http://knplabs.com",
+        "keywords": [
+            "Blameable",
+            "behaviors",
+            "doctrine2",
+            "filterable",
+            "softdeletable",
+            "timestampable",
+            "translatable",
+            "tree"
+        ]
+    },
+    {
+        "name": "willdurand/jsonp-callback-validator",
+        "version": "v1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
+            "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+            "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7"
+        },
+        "time": "2014-01-20 22:35:06",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "JsonpCallbackValidator": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "William Durand",
+                "email": "william.durand1@gmail.com",
+                "homepage": "http://www.willdurand.fr"
+            }
+        ],
+        "description": "JSONP callback validator."
+    },
+    {
+        "name": "friendsofsymfony/jsrouting-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+            "reference": "1053dd4c8864486cb78c1ef23ce4f021c659c261"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/1053dd4c8864486cb78c1ef23ce4f021c659c261",
+            "reference": "1053dd4c8864486cb78c1ef23ce4f021c659c261",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "symfony/console": "~2.3",
+            "symfony/framework-bundle": "~2.3",
+            "symfony/serializer": "~2.0",
+            "willdurand/jsonp-callback-validator": "~1.0"
+        },
+        "require-dev": {
+            "symfony/expression-language": "~2.4"
+        },
+        "time": "2015-01-23 02:51:30",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "FOS\\JsRoutingBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+            },
+            {
+                "name": "William Durand",
+                "email": "william.durand1@gmail.com"
+            }
+        ],
+        "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "Js Routing",
+            "javascript",
+            "routing"
         ]
     }
 ]

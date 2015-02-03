@@ -2,12 +2,13 @@
 
 // PdfMySiteFrontBundle:Default:layout.html.twig
 return array (
-  'c5755dd' => 
+  '0c5ae51' => 
   array (
     0 => 
     array (
       0 => 'common/libs/bootstrap/css/bootstrap.css',
       1 => 'common/css/main.css',
+      2 => 'common/libs/font-awesome-4.3.0/css/font-awesome.css',
     ),
     1 => 
     array (
@@ -17,7 +18,7 @@ return array (
     2 => 
     array (
       'output' => '_controller/mainfront.css',
-      'name' => 'c5755dd',
+      'name' => '0c5ae51',
       'debug' => NULL,
       'combine' => NULL,
       'vars' => 

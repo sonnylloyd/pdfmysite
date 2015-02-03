@@ -39,12 +39,13 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
         echo "    <div class=\"jumbotron\">
         <div class=\"container\">
             <div class=\"row\">
-                <div class=\"col-lg-6\">
+                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">
                     <label for=\"urlinput\">Enter the website's Url: </label>
                     <div class=\"input-group\">
                         <input id=\"urlinput\" type=\"text\" class=\"form-control\" placeholder=\"http://www.pdfmysite.com\">
                         <span class=\"input-group-btn\">
-                            <button class=\"btn btn-default\" type=\"button\">Generate!</button>
+                            <button class=\"btn btn-default\" type=\"button\"><span class=\"hidden-xs\">Archive</span> <i class=\"fa fa-check-circle-o\"></i></button>
+                            <button class=\"btn btn-danger\" type=\"button\"><span class=\"hidden-xs\">Generate</span> <i class=\"fa fa-check-circle-o\"></i></button>
                         </span>
                     </div>
                 </div>
@@ -53,20 +54,36 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
     </div>
     <div class=\"container\">
         <div class=\"starter-template\">
-            <h1>Currently Under Contruction</h1>
-            <p class=\"lead\">Please be patient.</p>
+            <h1>Welcome To Pdf My Site</h1>
+            <p class=\"lead\">A Free service to generate any url to a pdf document</p>
         </div>
     </div>
     <div class=\"container\">
         <div class=\"starter-template\">
-            <div class=\"col-md-4\">
+            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">
                 <h1>ads here</h1>
             </div>
-            <div class=\"col-md-4\">
+            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">
                 <h1>ads here</h1>
             </div>
-            <div class=\"col-md-4\">
+            <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">
                 <h1>ads here</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class=\"row\">
+        <hr>
+        <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">
+            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
+                <div class=\"pull-left\">
+                    <a href=\"#\">Terms of Service</a>    
+                    <a href=\"#\">Privacy</a>    
+                </div>
+            </div>
+            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
+                <p class=\"muted pull-right\">© 2013 PdfMySite. All rights reserved</p>
             </div>
         </div>
     </div>

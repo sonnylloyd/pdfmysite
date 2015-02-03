@@ -28,20 +28,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $request = $this->request;
 
         if (0 === strpos($pathinfo, '/mainfront')) {
-            // _assetic_c5755dd
+            // _assetic_0c5ae51
             if ($pathinfo === '/mainfront.css') {
-                return array (  '_controller' => 'assetic.controller:render',  'name' => 'c5755dd',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_c5755dd',);
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '0c5ae51',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_0c5ae51',);
             }
 
             if (0 === strpos($pathinfo, '/mainfront_')) {
-                // _assetic_c5755dd_0
+                // _assetic_0c5ae51_0
                 if ($pathinfo === '/mainfront_bootstrap_1.css') {
-                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'c5755dd',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_c5755dd_0',);
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '0c5ae51',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_0c5ae51_0',);
                 }
 
-                // _assetic_c5755dd_1
+                // _assetic_0c5ae51_1
                 if ($pathinfo === '/mainfront_main_2.css') {
-                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'c5755dd',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_c5755dd_1',);
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '0c5ae51',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_0c5ae51_1',);
+                }
+
+                // _assetic_0c5ae51_2
+                if ($pathinfo === '/mainfront_font-awesome_3.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '0c5ae51',  'pos' => 2,  '_format' => 'css',  '_route' => '_assetic_0c5ae51_2',);
                 }
 
             }

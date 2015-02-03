@@ -45,7 +45,7 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
                         <input id=\"urlinput\" type=\"text\" class=\"form-control\" placeholder=\"http://www.pdfmysite.com\">
                         <span class=\"input-group-btn\">
                             <button class=\"btn btn-default\" type=\"button\"><span class=\"hidden-xs\">Archive</span> <i class=\"fa fa-check-circle-o\"></i></button>
-                            <button class=\"btn btn-danger\" type=\"button\"><span class=\"hidden-xs\">Generate</span> <i class=\"fa fa-check-circle-o\"></i></button>
+                            <button class=\"btn btn-danger\" type=\"button\"><span class=\"hidden-xs\">Generate</span> <i class=\"fa fa-arrow-right\"></i></button>
                         </span>
                     </div>
                 </div>
@@ -68,22 +68,6 @@ class __TwigTemplate_a7207ab9caebce7c1daaf26e9b7cb935180078c41a88431859e5fe30b98
             </div>
             <div class=\"col-lg-4 col-md-4 col-sm-12 col-xs-12\">
                 <h1>ads here</h1>
-            </div>
-        </div>
-    </div>
-
-
-    <div class=\"row\">
-        <hr>
-        <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">
-            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
-                <div class=\"pull-left\">
-                    <a href=\"#\">Terms of Service</a>    
-                    <a href=\"#\">Privacy</a>    
-                </div>
-            </div>
-            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
-                <p class=\"muted pull-right\">© 2013 PdfMySite. All rights reserved</p>
             </div>
         </div>
     </div>

@@ -20,20 +20,27 @@ class DefaultController extends Controller {
         $archive->setDescription("decription");
         $archive->setKeywords("keywords");
         $archive->setTitle("title here");
+        $archive->setSlug("title_here_6");
         
         
         
         $em = $this->get('doctrine')->getManager();
         //$em = $this->getDoctrine()->getManager();
 
+        
+        
+        //$this->get('knp_snappy.image')->generate('http://www.google.fr', 'generates/image.jpg');
+        $path = $this->get('kernel')->getRootDir() . '/../web/generates';
+        $name = \tempnam ( $path , "pms" ).'.pdf';
+        $this->get('knp_snappy.pdf')->generate('http://www.google.com', $path.$name);
+        $archive->setFile("title_here");
         $em->persist($archive);
         $em->flush();
         
-        return new Response('Created archive id '.$archive->getId());
+        return new Response('Created archive id '.$archive->getId(). $path.$name);
         
        
-        //$this->get('knp_snappy.image')->generate('http://www.google.fr', '/web/generates/image.jpg');
-        //$this->get('knp_snappy.pdf')->generate('http://www.google.fr', '/web/generates/file.pdf');
+        
 
         //$pageUrl = "www.google.com";
         //return new Response(

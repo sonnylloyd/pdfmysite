@@ -77,10 +77,14 @@ knp_snappy:
     pdf:
         enabled:    true
         #binary:     /usr/local/bin/wkhtmltopdf
-        binary:     "%kernel.root_dir%/Resources/wkhtmltopdf/wkhtmltopdf"
+        #binary:     /usr/bin/wkhtmltopdf
+        binary:     wkhtmltopdf
+        #binary:     "%kernel.root_dir%/Resources/wkhtmltopdf/wkhtmltopdf"
         options:    []
     image:
         enabled:    true
         #binary:     /usr/local/bin/wkhtmltoimage
-        binary:     "%kernel.root_dir%/Resources/wkhtmltopdf/wkhtmltoimage"
+        #binary:     /usr/bin/wkhtmltoimage
+        binary:     wkhtmltoimage
+        #binary:     "%kernel.root_dir%/Resources/wkhtmltopdf/wkhtmltoimage"
         options:    []

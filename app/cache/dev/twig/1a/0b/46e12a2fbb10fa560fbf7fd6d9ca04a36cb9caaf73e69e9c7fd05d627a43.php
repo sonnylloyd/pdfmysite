@@ -123,17 +123,33 @@ class __TwigTemplate_1a0b46e12a2fbb10fa560fbf7fd6d9ca04a36cb9caaf73e69e9c7fd05d6
     // line 39
     public function block_footer($context, array $blocks = array())
     {
+        // line 40
+        echo "    <hr>
+    <div class=\"container\">
+        <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">
+            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
+                <div class=\"pull-left\">
+                    <a href=\"#\">Terms of Service</a>    
+                    <a href=\"#\">Privacy</a>    
+                </div>
+            </div>
+            <div class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">
+                <p class=\"muted pull-right\">© 2013 PdfMySite. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+";
     }
 
-    // line 41
+    // line 55
     public function block_javascript($context, array $blocks = array())
     {
-        // line 42
+        // line 56
         echo "    ";
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "06bead0_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_06bead0_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/mainfront_jquery-1.11.1.min_1.js");
-            // line 48
+            // line 62
             echo "    <script src=\"";
             echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
             echo "\"></script>
@@ -153,21 +169,21 @@ class __TwigTemplate_1a0b46e12a2fbb10fa560fbf7fd6d9ca04a36cb9caaf73e69e9c7fd05d6
     ";
         }
         unset($context["asset_url"]);
-        // line 50
+        // line 64
         echo "    ";
     }
 
-    // line 52
+    // line 66
     public function block_headscript($context, array $blocks = array())
     {
-        // line 53
+        // line 67
         echo "    <!--[if lt IE]>
     ";
-        // line 54
+        // line 68
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "8a79e4b_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_8a79e4b_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/mainfront.ie_ie-emulation-modes-warning_1.js");
-            // line 62
+            // line 76
             echo "    ";
             // asset "8a79e4b_1"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_8a79e4b_1") : $this->env->getExtension('assets')->getAssetUrl("_controller/mainfront.ie_ie10-viewport-bug-workaround_2.js");
@@ -184,7 +200,7 @@ class __TwigTemplate_1a0b46e12a2fbb10fa560fbf7fd6d9ca04a36cb9caaf73e69e9c7fd05d6
             echo "    ";
         }
         unset($context["asset_url"]);
-        // line 63
+        // line 77
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("mainfront.ie.js"), "html", null, true);
         echo "\"></script>
@@ -204,6 +220,6 @@ class __TwigTemplate_1a0b46e12a2fbb10fa560fbf7fd6d9ca04a36cb9caaf73e69e9c7fd05d6
 
     public function getDebugInfo()
     {
-        return array (  188 => 63,  171 => 62,  167 => 54,  164 => 53,  161 => 52,  157 => 50,  137 => 48,  132 => 42,  129 => 41,  124 => 39,  107 => 26,  103 => 25,  92 => 16,  89 => 15,  85 => 13,  79 => 11,  76 => 10,  69 => 11,  66 => 10,  60 => 11,  57 => 10,  51 => 11,  48 => 10,  43 => 3,  40 => 2,  11 => 1,);
+        return array (  204 => 77,  187 => 76,  183 => 68,  180 => 67,  177 => 66,  173 => 64,  153 => 62,  148 => 56,  145 => 55,  127 => 40,  124 => 39,  107 => 26,  103 => 25,  92 => 16,  89 => 15,  85 => 13,  79 => 11,  76 => 10,  69 => 11,  66 => 10,  60 => 11,  57 => 10,  51 => 11,  48 => 10,  43 => 3,  40 => 2,  11 => 1,);
     }
 }

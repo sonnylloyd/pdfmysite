@@ -14,26 +14,41 @@ class DefaultController extends Controller {
     }
 
     public function generateAction(Request $request) {
+        
+        $tags = \get_meta_tags('https://www.sunzu.com');
+        
         $archive = new Archives();
-        $archive->setUrl('A Foo Bar');
+        $archive->setUrl('https://www.sunzu.com');
         $archive->setIpaddress($request->getClientIp());
-        $archive->setDescription("decription");
-        $archive->setKeywords("keywords");
-        $archive->setTitle("title here");
-        $archive->setSlug("title_here_6");
         
+        if($tags['description']){
+            $archive->setDescription($tags['description']);
+        }else{
+            $archive->setDescription("");
+        }
+        if($tags['keywords']){
+            $archive->setKeywords($tags['keywords']);
+        }else{
+            $archive->setKeywords("");
+        }
+        if($tags['title']){
+            $archive->setTitle($tags['title']);
+        }else{
+            $archive->setTitle("hello world");
+        }
         
-        
+        $archive->setSlug("title_here_sunzu");
+
         $em = $this->get('doctrine')->getManager();
-        //$em = $this->getDoctrine()->getManager();
 
         
+        $path = 'generates';
+        $name = \tempnam ( $path , "pms" );
         
-        //$this->get('knp_snappy.image')->generate('http://www.google.fr', 'generates/image.jpg');
-        $path = $this->get('kernel')->getRootDir() . '/../web/generates';
-        $name = \tempnam ( $path , "pms" ).'.pdf';
-        $this->get('knp_snappy.pdf')->generate('http://www.google.com', $path.$name);
-        $archive->setFile("title_here");
+        //$this->get('knp_snappy.image')->generate('http://www.google.com', $path.$name.'.jpg');
+        $this->get('knp_snappy.pdf')->generate('https://www.sunzu.com', $path.$name.'.pdf');
+        
+        $archive->setFile($name.'.pdf');
         $em->persist($archive);
         $em->flush();
         

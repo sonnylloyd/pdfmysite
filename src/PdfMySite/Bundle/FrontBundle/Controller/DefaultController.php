@@ -23,36 +23,35 @@ class DefaultController extends Controller {
         
         if($tags['description']){
             $archive->setDescription($tags['description']);
-        }else{
-            $archive->setDescription("");
         }
+        
         if($tags['keywords']){
             $archive->setKeywords($tags['keywords']);
-        }else{
-            $archive->setKeywords("");
         }
+        
         if($tags['title']){
             $archive->setTitle($tags['title']);
         }else{
             $archive->setTitle("hello world");
         }
         
-        $archive->setSlug("title_here_sunzu");
-
+        
         $em = $this->get('doctrine')->getManager();
 
         
         $path = 'generates';
         $name = \tempnam ( $path , "pms" );
         
-        //$this->get('knp_snappy.image')->generate('http://www.google.com', $path.$name.'.jpg');
-        $this->get('knp_snappy.pdf')->generate('https://www.sunzu.com', $path.$name.'.pdf');
+        $archive->setSlug($name);
         
-        $archive->setFile($name.'.pdf');
+        //$this->get('knp_snappy.image')->generate('http://www.google.com', $path.$name.'.jpg');
+        $this->get('knp_snappy.pdf')->generate('https://www.sunzu.com', $name.".pdf");
+        
+        $archive->setFile($name.".pdf");
         $em->persist($archive);
         $em->flush();
         
-        return new Response('Created archive id '.$archive->getId(). $path.$name);
+        return new Response('Created archive id '.$archive->getId(). $name.".pdf");
         
        
         

@@ -12,7 +12,7 @@
  * @author sonny.lloyd
  */
 
-namespace PdfMySite\FrontBundle\Form\Type;
+namespace PdfMySite\Bundle\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,14 +20,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ArchiveFormType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('title', 'text', array(
+        $builder->add('url', 'text', array(
             'required' => true,
-            'label' => 'Title'
+            'label' => 'Enter the websites Url:'
+        ));
+        $builder->add('archive', 'checkbox', array(
+            'label' => 'archive',
+            'required' => false,
         ));
     }
 
     public function getName() {
         return 'archive';
+    }
+
+    public function getDefaultOptions(array $options) {
+        return array(
+            'data_class' => 'PdfMySite\Bundle\FrontBundle\Entity\Archives'
+        );
     }
 
 }

@@ -7,16 +7,27 @@
                     <label for="urlinput"> {{ form_label(form.url) }}</label>
                     <div class="input-group">
                         {#<input id="urlinput" type="text" class="form-control" placeholder="http://www.pdfmysite.com">#}
-                        {{ form_widget(form.url,{ 'id':'urlinput','attr': {'class': 'form-control','placeholder':'http://www.pdfmysite.com'} }) }}
+                        {{ form_widget(form.url,{ 'id':'pdf-input','attr': {'class': 'form-control pdf-form-element','placeholder':'http://www.pdfmysite.com'} }) }}
                         {{ form_widget(form.archive,{ 'id':'archivecheckbox','attr': {'class': 'hidden'} }) }}
                         {{ form_widget(form._token) }}
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="hidden-xs">Archive</span> <i class="fa fa-check-circle-o"></i></button>
-                            <button class="btn btn-danger" type="button"><span class="hidden-xs">Generate</span> <i class="fa fa-arrow-right"></i></button>
+                            <button id="pdf-archive" class="btn btn-default button-checkbox pdf-form-element" type="button" data-checkbox="#archivecheckbox" data-fa-checked="fa-check-circle-o" data-fa-uncheckbox="fa-circle-o"><span class="hidden-xs">Archive</span> <i class="fa fa-check-circle-o"></i></button>
+                            <button id="pdf-submit" class="btn btn-danger pdf-form-element" type="button"><span class="hidden-xs">Generate</span> <i class="fa fa-arrow-right"></i></button>
                         </span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="pdf-loader" class="container hidden">
+        <div class="starter-template">
+            <img class="img-responsive center-block" src="{{ asset('common/img/loader.gif') }}" alt="Loading image" />
+            <p>Please wait</p>
+        </div>
+    </div>
+    <div id="pdf-downloader" class="container hidden">
+        <div class="starter-template">
+            
         </div>
     </div>
     <div class="container">

@@ -27,6 +27,7 @@ class ArchiveFormType extends AbstractType {
         $builder->add('archive', 'checkbox', array(
             'label' => 'archive',
             'required' => false,
+             'data' => true
         ));
     }
 

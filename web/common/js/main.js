@@ -1,7 +1,8 @@
 $(function () {
     $('#pdf-submit').click(function () {
         var t = $(this)
-                , iElement = t.find('i');
+        ,data={}
+        , iElement = t.find('i');
         if (!iElement.hasClass('fa')) {
             iElement.addClass('fa');
         }
@@ -9,11 +10,12 @@ $(function () {
         $('.pdf-form-element').prop('disabled', true);
         $('#pdf-downloader').addClass('hidden');
         $('#pdf-loader').removeClass('hidden');
-        $.post("example.php", function () {
-            alert("success");
-        })
+        data['archive[url]'] = $('#pdf-input').val();
+        data['archive[_token]'] = $('#archive__token').val();
+        data['archive[archive]'] = $('#archivecheckbox').prop('checked');
+        $.post(Routing.generate('pdf_my_site_front_generate'),data)
             .done(function () {
-                alert("second success");
+                alert("success");
             })
             .fail(function () {
                 alert("error");

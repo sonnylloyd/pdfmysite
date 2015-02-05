@@ -1,0 +1,4 @@
+PdfMySite\Bundle\FrontBundle\Entity\Archives:
+    properties:
+        url:
+            - NotBlank: ~

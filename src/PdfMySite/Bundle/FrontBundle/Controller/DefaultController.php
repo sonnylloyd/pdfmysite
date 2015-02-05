@@ -19,6 +19,15 @@ class DefaultController extends Controller {
     }
 
     public function generateAction(Request $request) {
+        $archives = new Archives();
+        $archiveFormType = $this->createForm(new ArchiveFormType(),$archives);
+        $archiveFormType->handleRequest($request);
+
+        if ($archiveFormType->isValid()) {
+            // perform some action, such as saving the task to the database
+            echo "hello";exit;
+        }
+
         $archiveFormType = $this->createForm(new ArchiveFormType(), []);
         $tags = \get_meta_tags('https://www.sunzu.com');
 

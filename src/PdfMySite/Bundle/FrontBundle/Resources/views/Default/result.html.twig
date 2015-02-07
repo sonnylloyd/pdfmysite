@@ -1,0 +1,13 @@
+{% set file = 'generates/'~archives.file %}
+<div class="container">
+    <div class="starter-template">
+        <div class="row">
+                <img src="{{asset(file~'.png')}}" class="img-responsive center-block img-thumbnail"/>
+        </div>
+        <div class="row pdf-action-toolbar">
+                <a href="{{asset(file~'.pdf')}}" target="_blank" class="btn btn-lg btn-labeled btn-success">
+                    Download <i class="fa fa-arrow-circle-o-down"></i>
+                </a>
+        </div>
+    </div>
+</div>

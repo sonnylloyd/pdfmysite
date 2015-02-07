@@ -20,63 +20,50 @@ class DefaultController extends Controller {
 
     public function generateAction(Request $request) {
         $archives = new Archives();
-        $archiveFormType = $this->createForm(new ArchiveFormType(),$archives);
-        $archiveFormType->handleRequest($request);
-
-        if ($archiveFormType->isValid()) {
-            // perform some action, such as saving the task to the database
-            echo "hello";exit;
-        }
-
-        $archiveFormType = $this->createForm(new ArchiveFormType(), []);
-        $tags = \get_meta_tags('https://www.sunzu.com');
-
-        $archive = new Archives();
-        $archive->setUrl('https://www.sunzu.com');
-        $archive->setIpaddress($request->getClientIp());
-
-        if ($tags['description']) {
-            $archive->setDescription($tags['description']);
-        }
-
-        if ($tags['keywords']) {
-            $archive->setKeywords($tags['keywords']);
-        }
-
-        if ($tags['title']) {
-            $archive->setTitle($tags['title']);
-        } else {
-            $archive->setTitle("hello world");
-        }
-
-
-        $em = $this->get('doctrine')->getManager();
-
-
         $path = 'generates';
-        $name = \tempnam($path, "pms");
+        $archiveFormType = $this->createForm(new ArchiveFormType(), $archives);
+        $archiveFormType->handleRequest($request);
+        $em = $this->get('doctrine')->getManager();
+        if ($archiveFormType->isValid()) {
+            try {
+                $tags = \get_meta_tags($archives->getUrl());
+            } catch (Exception $e) {
+                $tags = [];
+            }
+            $archives->setIpaddress($request->getClientIp());
+            if (in_array("description", $tags)) {
+                $archives->setDescription($tags['description']);
+            }
 
-        $archive->setSlug($name);
+            if (in_array("keywords", $tags)) {
+                $archives->setKeywords($tags['keywords']);
+            }
+            if (in_array("title", $tags)) {
+                $archives->setTitle($tags['title']);
+            } else {
+                $archives->setTitle("hello world");
+            }
+            while (true) {
+                $filename = \uniqid(rand());
+                if (!\file_exists($path . '/' . $filename . '.pdf'))
+                    break;
+            }
+            $archives->setSlug($filename);
+            $archives->setFile($filename);
+            $this->get('knp_snappy.pdf')->generate($archives->getUrl(), $path . '/' . $filename . ".pdf");
+            try {
+                exec("convert -trim '".$path."/".$filename.".pdf[0]' -resize 100% -quality 100 -sharpen 0x1.0 '".$path."/".$filename.".png'");
+                exec("convert -trim '".$path."/".$filename.".png' -resize 150x150\! -quality 100 -sharpen 0x1.0 '".$path."/t_".$filename.".png'");
+            } catch (Exception $e) {
 
-        //$this->get('knp_snappy.image')->generate('http://www.google.com', $path.$name.'.jpg');
-        $this->get('knp_snappy.pdf')->generate('https://www.sunzu.com', $name . ".pdf");
+            }
+            $em->persist($archives);
+            $em->flush();
 
-        $archive->setFile($name . ".pdf");
-        $em->persist($archive);
-        $em->flush();
-
-        return new Response('Created archive id ' . $archive->getId() . $name . ".pdf");
-
-
-
-
-        //$pageUrl = "www.google.com";
-        //return new Response(
-        //        $this->get('knp_snappy.pdf')->getOutput($pageUrl), 200, array(
-        //    'Content-Type' => 'application/pdf',
-        //    'Content-Disposition' => 'attachment; filename="file.pdf"'
-        //        )
-        //);
+            return new Response($this->container->get('templating')->render(
+                            'PdfMySiteFrontBundle:Default:result.html.twig', array('archives' => $archives)
+            ));
+        }
     }
 
 }

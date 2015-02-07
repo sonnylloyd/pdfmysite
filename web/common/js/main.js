@@ -14,11 +14,15 @@ $(function () {
         data['archive[_token]'] = $('#archive__token').val();
         data['archive[archive]'] = $('#archivecheckbox').prop('checked');
         $.post(Routing.generate('pdf_my_site_front_generate'),data)
-            .done(function () {
-                alert("success");
+            .done(function (data) {
+               if($('#pdf-introduction')[0]){
+                   $('#pdf-introduction').addClass('hidden');
+               }
+               $('#pdf-downloader').html(data);
             })
-            .fail(function () {
-                alert("error");
+            .fail(function (data) {
+                //alert("error");
+                $('#pdf-downloader').html(data);
             })
             .always(function () {
                 $('.pdf-form-element').prop('disabled', false);

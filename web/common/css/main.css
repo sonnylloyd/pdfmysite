@@ -13,7 +13,7 @@ body {
   font-family: Helvetica, Arial;
 }
 .starter-template {
-  padding: 40px 15px;
+  padding: 15px 15px;
   text-align: center;
 }
 .navbar {
@@ -50,4 +50,11 @@ body {
     height: 2px;
     border-radius: 1px;
     background-color: #000;
+}
+body.pdfmysite .jumbotron {
+    padding: 30px 0px;
+    margin-bottom: 10px;
+}
+.pdf-action-toolbar{
+    margin-top: 20px;
 }

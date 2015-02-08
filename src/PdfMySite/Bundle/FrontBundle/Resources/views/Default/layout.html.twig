@@ -10,7 +10,6 @@
     %} 
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    {#<link rel="stylesheet" href="{{ asset('mainfront.css') }}" />#}
 {% endblock %}
 {% block body_attr %}class="pdfmysite"{% endblock %}
 {% block navigation %}
@@ -59,13 +58,14 @@
                 'js/fos_js_routes.js'
 		'common/libs/jquery/js/jquery-1.11.1.min.js'
 		'common/libs/bootstrap/js/bootstrap.js'
+                'common/libs/notify/notify.js'
                 'common/js/main.js'
 		output='mainfront.js'
                 filter='yui_js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    {#<script src="{{ asset('mainfront.js') }}"></script>#}
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="dtxosvt0zowu7uq"></script>
 {% endblock %}
 {% block headscript %}
     <!--[if lt IE]>
@@ -77,7 +77,7 @@
 		output='mainfront.ie.js'
                 filter='yui_js'
     %}
+    <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script src="{{ asset('mainfront.ie.js') }}"></script>
     <![endif]-->
 {% endblock %}

@@ -1,7 +1,8 @@
 $(function () {
-    $('#pdf-submit').click(function () {
+    $('#pdf-submit').click(function (event) {
+        event.preventDefault();
         var t = $(this)
-        ,data={}
+                , data = {}
         , iElement = t.find('i');
         if (!iElement.hasClass('fa')) {
             iElement.addClass('fa');
@@ -13,25 +14,26 @@ $(function () {
         data['archive[url]'] = $('#pdf-input').val();
         data['archive[_token]'] = $('#archive__token').val();
         data['archive[archive]'] = $('#archivecheckbox').prop('checked');
-        $.post(Routing.generate('pdf_my_site_front_generate'),data)
-            .done(function (data) {
-               if($('#pdf-introduction')[0]){
-                   $('#pdf-introduction').addClass('hidden');
-               }
-               $('#pdf-downloader').html(data);
-            })
-            .fail(function (data) {
-                //alert("error");
-                $('#pdf-downloader').html(data);
-            })
-            .always(function () {
-                $('.pdf-form-element').prop('disabled', false);
-                $('#pdf-loader').addClass('hidden');
-                iElement.removeClass('fa-spinner fa-spin').addClass('fa-arrow-right');
-                $('#pdf-downloader').removeClass('hidden');
-            });
+        $.post(Routing.generate('pdf_my_site_front_generate'), data)
+                .done(function (data) {
+                    if ($('#pdf-introduction')[0]) {
+                        $('#pdf-introduction').addClass('hidden');
+                    }
+                    $('#pdf-downloader').html(data);
+                })
+                .fail(function (data) {
+                    //alert("error");
+                    $('#pdf-downloader').html(data);
+                })
+                .always(function () {
+                    $('.pdf-form-element').prop('disabled', false);
+                    $('#pdf-loader').addClass('hidden');
+                    iElement.removeClass('fa-spinner fa-spin').addClass('fa-arrow-right');
+                    $('#pdf-downloader').removeClass('hidden');
+                });
     });
-    $('.button-checkbox').click(function () {
+    $('.button-checkbox').click(function (event) {
+        event.preventDefault();
         var t = $(this)
                 , iElement = t.find('i')
                 , checkboxElement = (t.data('checkbox') ? t.data('checkbox') : false)
@@ -49,6 +51,23 @@ $(function () {
                 iElement.removeClass(faUnchecked).addClass(faChecked);
             }
         }
+    });
+    $(document).on('click', '.pdf-dropbox-save', function (event) {
+        event.preventDefault();
+        var t = $(this);
+        var options = {
+            files: [
+                {'url': t.attr('href'), 'filename': t.data('filename')}
+            ],
+            success: function () {
+                $.notify("Saved To DropBox");
+            },
+            error: function (errorMessage) {
+                alert(errorMessage);
+            }
+        };
+        console.log(options);
+        Dropbox.save(options);
     });
 });
 

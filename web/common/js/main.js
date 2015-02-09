@@ -60,10 +60,10 @@ $(function () {
                 {'url': t.attr('href'), 'filename': t.data('filename')}
             ],
             success: function () {
-                $.notify("Saved To DropBox");
+                $.notify("Saved To DropBox","succes",{position:"bottom center"});
             },
             error: function (errorMessage) {
-                alert(errorMessage);
+                $.notify(errorMessage,"error",{position:"bottom center"});
             }
         };
         console.log(options);

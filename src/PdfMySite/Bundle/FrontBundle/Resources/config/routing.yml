@@ -17,3 +17,7 @@ pdf_my_site_front_archives:
         page:  \d+
     options:
         sitemap: true
+
+pdf_my_site_front_archive:
+    path:     /archives/{slug}
+    defaults: { _controller: PdfMySiteFrontBundle:Default:archive}

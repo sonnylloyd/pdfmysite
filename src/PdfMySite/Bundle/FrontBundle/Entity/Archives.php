@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="PdfMySite\Bundle\FrontBundle\Repository\ArchivesRepository")
  */
-class Archives
-{
+class Archives {
+
     /**
      * @var integer
      *
@@ -84,14 +84,18 @@ class Archives
      */
     private $file;
 
+    /**
+     * @var datetime $created
+     * @ORM\Column(name="created", type="datetime", nullable=false)
+     */
+    private $created;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -101,8 +105,7 @@ class Archives
      * @param string $url
      * @return Archives
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url) {
         $this->url = $url;
 
         return $this;
@@ -113,8 +116,7 @@ class Archives
      *
      * @return string 
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -124,8 +126,7 @@ class Archives
      * @param string $ipaddress
      * @return Archives
      */
-    public function setIpaddress($ipaddress)
-    {
+    public function setIpaddress($ipaddress) {
         $this->ipaddress = $ipaddress;
 
         return $this;
@@ -136,8 +137,7 @@ class Archives
      *
      * @return string 
      */
-    public function getIpaddress()
-    {
+    public function getIpaddress() {
         return $this->ipaddress;
     }
 
@@ -147,8 +147,7 @@ class Archives
      * @param string $description
      * @return Archives
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -159,8 +158,7 @@ class Archives
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -170,8 +168,7 @@ class Archives
      * @param string $keywords
      * @return Archives
      */
-    public function setKeywords($keywords)
-    {
+    public function setKeywords($keywords) {
         $this->keywords = $keywords;
 
         return $this;
@@ -182,8 +179,7 @@ class Archives
      *
      * @return string 
      */
-    public function getKeywords()
-    {
+    public function getKeywords() {
         return $this->keywords;
     }
 
@@ -193,8 +189,7 @@ class Archives
      * @param string $title
      * @return Archives
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -205,8 +200,7 @@ class Archives
      *
      * @return string 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -216,8 +210,7 @@ class Archives
      * @param string $slug
      * @return Archives
      */
-    public function setSlug($slug)
-    {
+    public function setSlug($slug) {
         $this->slug = $slug;
 
         return $this;
@@ -228,8 +221,7 @@ class Archives
      *
      * @return string 
      */
-    public function getSlug()
-    {
+    public function getSlug() {
         return $this->slug;
     }
 
@@ -239,8 +231,7 @@ class Archives
      * @param boolean $active
      * @return Archives
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -251,8 +242,7 @@ class Archives
      *
      * @return boolean 
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
@@ -262,8 +252,7 @@ class Archives
      * @param boolean $archive
      * @return Archives
      */
-    public function setArchive($archive)
-    {
+    public function setArchive($archive) {
         $this->archive = $archive;
 
         return $this;
@@ -274,8 +263,7 @@ class Archives
      *
      * @return boolean 
      */
-    public function getArchive()
-    {
+    public function getArchive() {
         return $this->archive;
     }
 
@@ -285,8 +273,7 @@ class Archives
      * @param string $file
      * @return Archives
      */
-    public function setFile($file)
-    {
+    public function setFile($file) {
         $this->file = $file;
 
         return $this;
@@ -297,9 +284,24 @@ class Archives
      *
      * @return string 
      */
-    public function getFile()
-    {
+    public function getFile() {
         return $this->file;
     }
-    
+
+    /**
+     * Set created
+     */
+    public function setCreated($created) {
+        $this->created = $created;
+        return $this;
+    }
+
+    /**
+     * Get created
+     * @return datetime
+     */
+    public function getCreated() {
+        return $this->created;
+    }
+
 }

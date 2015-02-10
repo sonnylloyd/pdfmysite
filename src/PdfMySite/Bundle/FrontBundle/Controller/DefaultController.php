@@ -57,6 +57,7 @@ class DefaultController extends Controller {
             } catch (Exception $e) {
                 
             }
+            $archives->setCreated(new \DateTime('now'));
             $em->persist($archives);
             $em->flush();
 
@@ -69,18 +70,35 @@ class DefaultController extends Controller {
     public function archivesAction(Request $request, $page) {
         $em = $this->get('doctrine.orm.entity_manager');
         
-        $archives =  $this->getDoctrine()
+        $archives =  $em
         ->getRepository('PdfMySite\Bundle\FrontBundle\Entity\Archives')
-        ->findBy(array('active'=>true,'archive'=>true));
+        ->findBy(array('active'=>true,'archive'=>true),array('created' => 'DESC'));
 
         $paginator = $this->get('knp_paginator');
         
         $pagination = $paginator->paginate(
-                $archives, $page, 10
+                $archives, $page, 5
         );
 
         return $this->render('PdfMySiteFrontBundle:Default:archives.html.twig', array(
                     'pagination' => $pagination
+                        )
+        );
+    }
+    
+    public function archiveAction(Request $request, $slug) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        
+        $archive = $em
+        ->getRepository('PdfMySite\Bundle\FrontBundle\Entity\Archives')
+        ->findOneBy(array('active'=>true,'slug'=>$slug));
+        
+        if(!$archive){
+            echo "404";exit;
+        }
+
+        return $this->render('PdfMySiteFrontBundle:Default:archive.html.twig', array(
+                    'archive' => $archive
                         )
         );
     }

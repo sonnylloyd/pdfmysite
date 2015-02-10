@@ -1,16 +1,17 @@
 {% extends "PdfMySiteFrontBundle:Default:layout.html.twig" %}
+{% block page_title %}Archives{% endblock %}
 {% block body %}
     {#{{ pagination.getTotalItemCount }}#}
     <div id="pdf-list" class="container">
         <div class="starter-template">
             {% for archive in pagination %}
                 <div>{{ archive.id }}
-                    <img src="{{asset('generates/t_'~archive.file~'.png')}}" class="img-responsive center-block img-thumbnail"/>
+                    <a href="{{ path('pdf_my_site_front_archive',{'slug':archive.slug}) }}"><img src="{{asset('generates/t_'~archive.file~'.png')}}" class="img-responsive center-block img-thumbnail"/></a>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <div id="pdf-pagination" class="container">
+    <div class="container">
         <div class="starter-template">
             {{ knp_pagination_render(pagination) }}
         </div>

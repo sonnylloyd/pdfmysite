@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
             new PdfMySite\Bundle\FrontBundle\PdfMySiteFrontBundle(),
         );
 

@@ -1,6 +1,8 @@
 pdf_my_site_front_homepage:
     path:     /
     defaults: { _controller: PdfMySiteFrontBundle:Default:index }
+    options:
+        sitemap: true
     
 pdf_my_site_front_generate:
     path:     /generate
@@ -13,3 +15,5 @@ pdf_my_site_front_archives:
     defaults: { _controller: PdfMySiteFrontBundle:Default:archives, page: 1}
     requirements:
         page:  \d+
+    options:
+        sitemap: true

@@ -69,8 +69,8 @@ class DefaultController extends Controller {
     public function archivesAction(Request $request, $page) {
         $em = $this->get('doctrine.orm.entity_manager');
         
-        $archives = $em
-        ->getRepository('Archives')
+        $archives =  $this->getDoctrine()
+        ->getRepository('PdfMySite\Bundle\FrontBundle\Entity\Archives')
         ->findBy(array('active'=>true,'archive'=>true));
 
         $paginator = $this->get('knp_paginator');

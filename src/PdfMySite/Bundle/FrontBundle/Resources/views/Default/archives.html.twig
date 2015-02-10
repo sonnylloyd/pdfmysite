@@ -4,7 +4,9 @@
     <div id="pdf-list" class="container">
         <div class="starter-template">
             {% for archive in pagination %}
-                <div>{{ archive.id }}</div>
+                <div>{{ archive.id }}
+                    <img src="{{asset('generates/t_'~archive.file~'.png')}}" class="img-responsive center-block img-thumbnail"/>
+                </div>
             {% endfor %}
         </div>
     </div>

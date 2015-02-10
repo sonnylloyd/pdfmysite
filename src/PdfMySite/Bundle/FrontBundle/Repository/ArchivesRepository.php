@@ -1,6 +1,6 @@
 <?php
 
-namespace PdfMySite\Bundle\FrontBundle\Entity;
+namespace PdfMySite\Bundle\FrontBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

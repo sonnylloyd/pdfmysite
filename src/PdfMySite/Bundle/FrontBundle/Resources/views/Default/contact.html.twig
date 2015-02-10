@@ -1,0 +1,52 @@
+{% extends "PdfMySiteFrontBundle:Default:layout.html.twig" %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="urlinput"> {{ form_label(form.url) }}</label>
+                    <div class="input-group">
+                        {#<input id="urlinput" type="text" class="form-control" placeholder="http://www.pdfmysite.com">#}
+                        {{ form_widget(form.url,{ 'id':'pdf-input','attr': {'class': 'form-control pdf-form-element','placeholder':'http://www.pdfmysite.com'} }) }}
+                        {{ form_widget(form.archive,{ 'id':'archivecheckbox','attr': {'class': 'hidden'} }) }}
+                        {{ form_widget(form._token) }}
+                        <span class="input-group-btn">
+                            <button id="pdf-archive" class="btn btn-default button-checkbox pdf-form-element" type="button" data-checkbox="#archivecheckbox" data-fa-checked="fa-check-circle-o" data-fa-uncheckbox="fa-circle-o"><span class="hidden-xs">Archive</span> <i class="fa fa-check-circle-o"></i></button>
+                            <button id="pdf-submit" class="btn btn-danger pdf-form-element" type="button"><span class="hidden-xs">Generate</span> <i class="fa fa-arrow-right"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pdf-loader" class="container hidden">
+        <div class="starter-template">
+            <img class="img-responsive center-block" src="{{ asset('common/img/loader.gif') }}" alt="Loading image" />
+            <p>Please wait</p>
+        </div>
+    </div>
+    <div id="pdf-downloader" class="container hidden">
+        <div class="starter-template">
+            
+        </div>
+    </div>
+    <div id="pdf-introduction" class="container">
+        <div class="starter-template">
+            <h1>Welcome To Pdf My Site</h1>
+            <p class="lead">A Free service to generate any url to a pdf document</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="starter-template">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <h1>ads here</h1>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <h1>ads here</h1>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <h1>ads here</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}

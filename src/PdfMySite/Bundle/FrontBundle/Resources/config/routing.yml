@@ -7,3 +7,9 @@ pdf_my_site_front_generate:
     defaults: { _controller: PdfMySiteFrontBundle:Default:generate }
     options:
         expose: true
+        
+pdf_my_site_front_archives:
+    path:     /archives/{page}
+    defaults: { _controller: PdfMySiteFrontBundle:Default:archives, page: 1}
+    requirements:
+        page:  \d+

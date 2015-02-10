@@ -1593,7 +1593,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getKnpSnappy_ImageService()
     {
-        return $this->services['knp_snappy.image'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Image(($this->targetDirs[2].'/Resources/wkhtmltopdf/wkhtmltoimage'), array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['knp_snappy.image'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Image('wkhtmltoimage', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -1606,7 +1606,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getKnpSnappy_PdfService()
     {
-        return $this->services['knp_snappy.pdf'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Pdf(($this->targetDirs[2].'/Resources/wkhtmltopdf/wkhtmltopdf'), array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['knp_snappy.pdf'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Pdf('wkhtmltopdf', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -3434,6 +3434,7 @@ class appDevDebugProjectContainer extends Container
         $instance->setTranslator($this->get('translator'));
         $instance->setTranslationDomain('validators');
         $instance->addXmlMappings(array(0 => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')));
+        $instance->addYamlMappings(array(0 => ($this->targetDirs[3].'/src/PdfMySite/Bundle/FrontBundle/Resources/config/validation.yml')));
         $instance->enableAnnotationMapping($this->get('annotation_reader'));
         $instance->addMethodMapping('loadValidatorMetadata');
         $instance->setApiVersion(3);
@@ -4479,7 +4480,7 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
             'knp_snappy.pdf.internal_generator.class' => 'Knp\\Snappy\\Pdf',
             'knp_snappy.pdf.class' => 'Knp\\Bundle\\SnappyBundle\\Snappy\\LoggableGenerator',
-            'knp_snappy.pdf.binary' => ($this->targetDirs[2].'/Resources/wkhtmltopdf/wkhtmltopdf'),
+            'knp_snappy.pdf.binary' => 'wkhtmltopdf',
             'knp_snappy.pdf.options' => array(
 
             ),
@@ -4488,7 +4489,7 @@ class appDevDebugProjectContainer extends Container
             ),
             'knp_snappy.image.internal_generator.class' => 'Knp\\Snappy\\Image',
             'knp_snappy.image.class' => 'Knp\\Bundle\\SnappyBundle\\Snappy\\LoggableGenerator',
-            'knp_snappy.image.binary' => ($this->targetDirs[2].'/Resources/wkhtmltopdf/wkhtmltoimage'),
+            'knp_snappy.image.binary' => 'wkhtmltoimage',
             'knp_snappy.image.options' => array(
 
             ),

@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),     
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new PdfMySite\Bundle\FrontBundle\PdfMySiteFrontBundle(),
         );
 

@@ -60,14 +60,21 @@ $(function () {
                 {'url': t.attr('href'), 'filename': t.data('filename')}
             ],
             success: function () {
-                $.notify("Saved To DropBox","succes",{position:"bottom center"});
+                $.notify("Saved To DropBox", "succes", {position: "bottom center"});
             },
             error: function (errorMessage) {
-                $.notify(errorMessage,"error",{position:"bottom center"});
+                $.notify(errorMessage, "error", {position: "bottom center"});
             }
         };
         console.log(options);
         Dropbox.save(options);
+    });
+    $('#pdf-input').focusout(function () {
+        var t = $(this)
+        ,val = t.val();
+        if (val && !val.match(/^http([s]?):\/\/.*/)) {
+            t.val('http://' + val);
+        }
     });
 });
 

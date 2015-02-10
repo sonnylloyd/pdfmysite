@@ -9,7 +9,7 @@ use PdfMySite\Bundle\FrontBundle\Entity\Archives;
 use PdfMySite\Bundle\FrontBundle\Form\Type\ArchiveFormType;
 
 class DefaultController extends Controller {
-
+     
     public function indexAction() {
         $archiveFormType = $this->createForm(new ArchiveFormType(), []);
         return $this->render('PdfMySiteFrontBundle:Default:index.html.twig', array(
@@ -52,10 +52,10 @@ class DefaultController extends Controller {
             $archives->setFile($filename);
             $this->get('knp_snappy.pdf')->generate($archives->getUrl(), $path . '/' . $filename . ".pdf");
             try {
-                exec("convert -trim '".$path."/".$filename.".pdf[0]' -resize 100% -quality 100 -sharpen 0x1.0 '".$path."/".$filename.".png'");
-                exec("convert -trim '".$path."/".$filename.".png' -resize 150x150\! -quality 100 -sharpen 0x1.0 '".$path."/t_".$filename.".png'");
+                exec("convert -trim '" . $path . "/" . $filename . ".pdf[0]' -resize 100% -quality 100 -sharpen 0x1.0 '" . $path . "/" . $filename . ".png'");
+                exec("convert -trim '" . $path . "/" . $filename . ".png' -resize 150x150\! -quality 100 -sharpen 0x1.0 '" . $path . "/t_" . $filename . ".png'");
             } catch (Exception $e) {
-
+                
             }
             $em->persist($archives);
             $em->flush();
@@ -64,6 +64,25 @@ class DefaultController extends Controller {
                             'PdfMySiteFrontBundle:Default:result.html.twig', array('archives' => $archives)
             ));
         }
+    }
+
+    public function archivesAction(Request $request, $page) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        
+        $archives = $em
+        ->getRepository('Archives')
+        ->findBy(array('active'=>true,'archive'=>true));
+
+        $paginator = $this->get('knp_paginator');
+        
+        $pagination = $paginator->paginate(
+                $archives, $page, 10
+        );
+
+        return $this->render('PdfMySiteFrontBundle:Default:archives.html.twig', array(
+                    'pagination' => $pagination
+                        )
+        );
     }
 
 }

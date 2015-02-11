@@ -15,5 +15,9 @@
         <div class="starter-template">
             {{ knp_pagination_render(pagination) }}
         </div>
-    </div>   
+        <div class="starter-template">
+            {{ pagination.getTotalItemCount }}
+        </div>
+        {#{{ pagination.getTotalItemCount }}#}
+    </div>
 {% endblock %}

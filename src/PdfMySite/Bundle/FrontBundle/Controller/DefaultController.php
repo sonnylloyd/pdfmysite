@@ -62,7 +62,7 @@ class DefaultController extends Controller {
             $em->flush();
 
             return new Response($this->container->get('templating')->render(
-                            'PdfMySiteFrontBundle:Default:result.html.twig', array('archives' => $archives)
+                            'PdfMySiteFrontBundle:Default:result.html.twig', array('archive' => $archives)
             ));
         }
     }

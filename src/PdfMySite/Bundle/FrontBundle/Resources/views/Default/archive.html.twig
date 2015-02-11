@@ -1,12 +1,7 @@
 {% extends "PdfMySiteFrontBundle:Default:layout.html.twig" %}
 {% block page_title %}Archive {{ archive.slug }}{% endblock %}
+{% block meta_description %}{{ archive.description }}{% endblock %}
 {% block body %}
     {#{{ pagination.getTotalItemCount }}#}
-    <div id="pdf-list" class="container">
-        <div class="starter-template">
-                <div>{{ archive.id }}
-                    <img src="{{asset('generates/'~archive.file~'.png')}}" class="img-responsive center-block img-thumbnail"/>
-                </div>
-        </div>
-    </div>
+    {% include 'PdfMySiteFrontBundle:Default:result.html.twig' %}
 {% endblock %}

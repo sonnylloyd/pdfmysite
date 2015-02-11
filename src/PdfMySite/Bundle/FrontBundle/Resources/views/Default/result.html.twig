@@ -1,4 +1,4 @@
-{% set file = 'generates/'~archives.file %}
+{% set file = 'generates/'~archive.file %}
 <div class="container">
     <div class="starter-template">
         <div class="row">
@@ -8,12 +8,12 @@
             <a href="{{asset(file~'.pdf')}}" target="_blank" class="btn btn-lg btn-labeled btn-success">
                 Download <i class="fa fa-arrow-circle-o-down"></i>
             </a>
-            <a href="{{asset(file~'.pdf',absolute=true)}}" data-filename="{{archives.file~'.pdf'}}" class="pdf-dropbox-save btn btn-lg btn-labeled btn-success">
+            <a href="{{asset(file~'.pdf',absolute=true)}}" data-filename="{{archive.file~'.pdf'}}" class="pdf-dropbox-save btn btn-lg btn-labeled btn-success">
                 Save To DropBox <i class="fa fa-dropbox"></i>
             </a>
             <a class="g-savetodrive pdf-drive-save btn btn-lg btn-labeled btn-success"
                data-src="{{asset(file~'.pdf',absolute=true)}}"
-               data-filename="{{archives.file~'.pdf'}}"
+               data-filename="{{archive.file~'.pdf'}}"
                data-sitename="PdfMySite">
             </a>
 

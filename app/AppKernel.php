@@ -20,7 +20,16 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            //new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new PdfMySite\Bundle\FrontBundle\PdfMySiteFrontBundle(),
+            new PdfMySite\Bundle\AdminBundle\PdfMySiteAdminBundle(),
+            new PdfMySite\Bundle\UserBundle\PdfMySiteUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

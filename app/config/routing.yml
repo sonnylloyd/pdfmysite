@@ -1,3 +1,11 @@
+pdf_my_site_user:
+    resource: "@PdfMySiteUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pdf_my_site_admin:
+    resource: "@PdfMySiteAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
 pdf_my_site_front:
     resource: "@PdfMySiteFrontBundle/Resources/config/routing.yml"
     prefix:   /
@@ -8,3 +16,15 @@ fos_js_routing:
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
+    
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

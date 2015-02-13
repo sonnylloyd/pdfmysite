@@ -1,0 +1,11 @@
+services:
+    sonata.admin.archives:
+        class: PdfMySite\Bundle\AdminBundle\Admin\ArchivesAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Archives" }
+        arguments:
+            - ~
+            - PdfMySite\Bundle\FrontBundle\Entity\Archives
+            - ~
+        calls:
+            - [ setTranslationDomain, [PdfMySiteFrontBundle]]

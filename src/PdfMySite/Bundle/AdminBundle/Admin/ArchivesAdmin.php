@@ -13,7 +13,7 @@ class ArchivesAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id', 'interger', array('label' => 'Archive Id'))
+            ->add('id', 'integer', array('label' => 'Archive Id'))
             ->add('url', 'string', array('label' => 'Archive Url'))
             ->add('ipaddress', 'string', array('label' => 'Ip Address'))
             ->add('description', 'text', array('label' => 'text'))
